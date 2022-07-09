@@ -1,11 +1,29 @@
 import { useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { Card } from "./components/Card";
+import axios from "axios";
 
 import HeroImg from "./assets/doctors.svg";
 import * as S from "./global/global";
+import { useEffect } from "react";
 
 function App() {
+  const [data, setData] = useState([]);
+  const [worldDataCases, setWorldDataCases] = useState([]);
+
+  const fetchCountries = async () => {
+    const res = await axios.get("https://api.covid19api.com/summary");
+    const results = await res.data;
+    setWorldDataCases(results.Global);
+    setData(results.Countries);
+
+    console.log(results);
+  };
+
+  useEffect(() => {
+    fetchCountries();
+  }, []);
+
   return (
     <S.Container>
       <S.Hero>
@@ -23,7 +41,7 @@ function App() {
         </S.HeroBody>
       </S.Hero>
       <SearchBar />
-      <Card />
+      <Card cases={data} />
     </S.Container>
   );
 }

@@ -1,25 +1,32 @@
 import * as S from "./Cards.Style";
 
-export const Card = () => {
+export const Card = ({ cases }) => {
+  //console.log(cases);
   return (
     <S.Container>
-      <S.Card>
-        <h1>dasdas</h1>
-        <S.CardBody>
-          <S.Column>
-            <h3>Total de casos</h3>
-            <h2>32.682.756</h2>
-          </S.Column>
-          <S.Column>
-            <h3>Mortes</h3>
-            <h2>32.682.756</h2>
-          </S.Column>
-          <S.Column>
-            <h3>Fatalidade</h3>
-            <h2>32.682.756</h2>
-          </S.Column>
-        </S.CardBody>
-      </S.Card>
+      {cases.map((item) => {
+        return (
+          <S.Card>
+            <S.CardTitle>{item.Country}</S.CardTitle>
+            <S.CardBody>
+              <S.Column>
+                <S.CardSubtitles>Total de casos</S.CardSubtitles>
+                <S.CardCases>{item.TotalConfirmed}</S.CardCases>
+              </S.Column>
+              <S.Column>
+                <S.CardSubtitles>Mortes</S.CardSubtitles>
+                <S.CardCases>{item.TotalDeaths}</S.CardCases>
+              </S.Column>
+              <S.Column>
+                <S.CardSubtitles>Fatalidade</S.CardSubtitles>
+                <S.CardCases>
+                  {(item.TotalDeaths / item.TotalConfirmed).toFixed(2)}%
+                </S.CardCases>
+              </S.Column>
+            </S.CardBody>
+          </S.Card>
+        );
+      })}
     </S.Container>
   );
 };
