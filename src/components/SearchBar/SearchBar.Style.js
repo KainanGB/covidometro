@@ -62,9 +62,17 @@ export const Button = styled.input.attrs({
   box-shadow: 0px 1px 6px #c7bfbe;
   border: none;
   background-color: white;
-  border-radius: 4px;
+  border-radius: 6px;
   padding: 1em;
   margin-top: 2em;
   width: 15rem;
   font-weight: bold;
+
+  cursor: pointer;
+
+  transition: transform 2s;
+
+  :hover {
+    transform: scale(1.1);
+  }
 `;

@@ -4,8 +4,7 @@ import * as S from "./Cards.Style";
 export const Card = ({
   filteredCountry,
   cases,
-  searchCountry,
-  setReset,
+
   fetchCasesByFilter,
 }) => {
   return (
@@ -15,7 +14,7 @@ export const Card = ({
             return (
               <S.Card key={index}>
                 <S.CardTitle>{item.name}</S.CardTitle>
-                <S.CardBody>
+                <S.CardBody secondary>
                   <S.Column>
                     <S.CardSubtitles>
                       Total de casos dos últimos cinco dias

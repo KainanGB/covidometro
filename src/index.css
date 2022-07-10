@@ -1,0 +1,10 @@
+.sync {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+}
+
+.sync:hover {
+  transition: transform 3s;
+  transform: rotate(360deg);
+}

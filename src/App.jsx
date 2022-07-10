@@ -36,12 +36,12 @@ function App() {
       const results = await res.data;
       const filteredResults = results.splice(results.length - 6, 6);
       let difference = filteredResults[5].Cases - filteredResults[0].Cases;
-      if (difference < 0) difference = 0;
+      //if (difference < 0) difference = 0;
       const copy = [];
 
       const newCountry = {
         name: countryName.Country,
-        cases: difference,
+        cases: Math.abs(difference),
       };
       copy.push(newCountry);
       setFilteredCountry(copy);
@@ -77,8 +77,6 @@ function App() {
         setReset={setReset}
       />
       <Card
-        searchCountry={setData}
-        setReset={setReset}
         cases={data}
         filteredCountry={filteredCountry}
         fetchCasesByFilter={fetchCasesByFilter}

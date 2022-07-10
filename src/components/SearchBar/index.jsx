@@ -16,11 +16,7 @@ export const SearchBar = ({
   return (
     <S.Content>
       <FaSync
-        style={{
-          position: "absolute",
-          right: "1rem",
-          cursor: "pointer",
-        }}
+        className="sync"
         onClick={() => {
           setReset(true);
           setFilteredCountry([]);

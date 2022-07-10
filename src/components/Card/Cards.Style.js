@@ -16,15 +16,24 @@ export const Card = styled.div`
 
   padding: 1.5em 4em;
 
-  border-radius: 4px;
+  border-radius: 6px;
   margin-top: 2em;
+
+  cursor: pointer;
+
+  transition: transform 2s;
+
+  :hover {
+    transform: scale(1.1);
+  }
 `;
 
 export const CardBody = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: ${(props) => (props.secondary ? "center" : "space-between")};
 `;
+
 export const Column = styled.div`
   text-align: center;
 `;
