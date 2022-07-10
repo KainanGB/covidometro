@@ -13,6 +13,9 @@ export const Content = styled.div`
   flex-direction: column;
   padding: 2em 4em;
   border-radius: 4px;
+  text-align: center;
+
+  position: relative;
 `;
 
 export const InputDiv = styled.div`
@@ -50,4 +53,18 @@ export const Border = styled.div`
   svg {
     /*padding: 0 1em;*/
   }
+`;
+
+export const Button = styled.input.attrs({
+  type: "button",
+  value: "Pesquisar",
+})`
+  box-shadow: 0px 1px 6px #c7bfbe;
+  border: none;
+  background-color: white;
+  border-radius: 4px;
+  padding: 1em;
+  margin-top: 2em;
+  width: 15rem;
+  font-weight: bold;
 `;

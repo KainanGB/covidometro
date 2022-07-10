@@ -7,10 +7,10 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing:border-box;
     font-family: 'Spectral', serif;
+    color: ${pallete.primaryTextColor};
 
     body {
       background-color: #FFFFFF;
-      color: ${pallete.primaryTextColor};
     }
 
     img {

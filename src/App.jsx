@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { Card } from "./components/Card";
+
+import moment from "moment";
 import axios from "axios";
 
 import HeroImg from "./assets/doctors.svg";
@@ -10,19 +12,49 @@ import { useEffect } from "react";
 function App() {
   const [data, setData] = useState([]);
   const [worldDataCases, setWorldDataCases] = useState([]);
+  const [reset, setReset] = useState(false);
+  const [filteredCountry, setFilteredCountry] = useState([]);
 
   const fetchCountries = async () => {
-    const res = await axios.get("https://api.covid19api.com/summary");
-    const results = await res.data;
-    setWorldDataCases(results.Global);
-    setData(results.Countries);
+    try {
+      const res = await axios.get("https://api.covid19api.com/summary");
+      const results = await res.data;
+      setWorldDataCases(results.Global);
+      setData(results.Countries);
+      setReset(false);
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
-    console.log(results);
+  const fetchCasesByFilter = async (value) => {
+    try {
+      const countryName = data.find((data) => {
+        return data.Country.toLowerCase() === value.toLowerCase();
+      });
+      const res = await axios.get(
+        `https://api.covid19api.com/country/${countryName.Slug}/status/confirmed`
+      );
+      const results = await res.data;
+      const filteredResults = results.splice(results.length - 6, 6);
+      const difference = filteredResults[5].Cases - filteredResults[0].Cases;
+      const copy = [];
+
+      const newCountry = {
+        name: countryName.Country,
+        cases: difference,
+      };
+      copy.push(newCountry);
+      setFilteredCountry(copy);
+      setReset(false);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   useEffect(() => {
-    fetchCountries();
-  }, []);
+    if (filteredCountry.length <= 0) fetchCountries();
+  }, [reset]);
 
   return (
     <S.Container>
@@ -40,8 +72,18 @@ function App() {
           <S.HeroImage src={HeroImg} />
         </S.HeroBody>
       </S.Hero>
-      <SearchBar />
-      <Card cases={data} />
+      <SearchBar
+        setFilteredCountry={setFilteredCountry}
+        fetchCasesByFilter={fetchCasesByFilter}
+        setReset={setReset}
+      />
+      <Card
+        searchCountry={setData}
+        setReset={setReset}
+        cases={data}
+        filteredCountry={filteredCountry}
+        fetchCasesByFilter={fetchCasesByFilter}
+      />
     </S.Container>
   );
 }
