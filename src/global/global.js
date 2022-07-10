@@ -13,6 +13,8 @@ export default createGlobalStyle`
 
     body {
       background-color: #fefaf9;
+     
+
     }
 
     img {
@@ -36,18 +38,28 @@ export const Container = styled.div`
   max-width: 1300px;
   margin: 0 auto;
   height: 100%;
-
+  padding-left: 2em;
+  padding-right: 2em;
   padding-bottom: 5em;
 `;
 
 export const Hero = styled.div`
   padding-top: 4em;
+  /*padding-bottom: 4em;*/
+
+  @media (max-width: 860px) {
+    margin-bottom: 8em;
+  }
 `;
 
 export const HeroText = styled.div``;
 export const HeroImage = styled.img`
   width: 30rem;
   z-index: -1;
+
+  @media (max-width: 860px) {
+    display: none;
+  }
 `;
 
 export const HeroBody = styled.div`

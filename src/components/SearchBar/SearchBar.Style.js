@@ -3,7 +3,7 @@ import * as pallete from "../../global/variables";
 
 export const Content = styled.div`
   margin: 0 auto;
-  width: 50rem;
+
   margin-top: -4rem;
   background: white;
   box-shadow: 0px 1px 6px #c7bfbe;
