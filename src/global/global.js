@@ -8,8 +8,9 @@ export default createGlobalStyle`
     margin: 0;
     padding: 0;
     box-sizing:border-box;
-    font-family: 'Spectral', serif;
+    font-family: 'Lato', sans-serif;
     color: ${pallete.primaryTextColor};
+    line-height:1.6 ;
 
     body {
       background-color: #fefaf9;
