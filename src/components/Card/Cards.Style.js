@@ -4,6 +4,7 @@ import * as pallete from "../../global/variables";
 export const Container = styled.div``;
 
 export const Card = styled.div`
+  width: 50rem;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -24,6 +25,10 @@ export const Card = styled.div`
 
   :hover {
     transform: scale(1.1);
+  }
+
+  @media (max-width: 860px) {
+    width: 100%;
   }
 `;
 

@@ -2,8 +2,8 @@ import styled from "styled-components";
 import * as pallete from "../../global/variables";
 
 export const Content = styled.div`
+  width: 50rem;
   margin: 0 auto;
-
   margin-top: -4rem;
   background: white;
   box-shadow: 0px 1px 6px #c7bfbe;
@@ -16,6 +16,10 @@ export const Content = styled.div`
   text-align: center;
 
   position: relative;
+
+  @media (max-width: 860px) {
+    width: 100%;
+  }
 `;
 
 export const InputDiv = styled.div`
