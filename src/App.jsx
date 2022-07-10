@@ -36,7 +36,6 @@ function App() {
       const results = await res.data;
       const filteredResults = results.splice(results.length - 6, 6);
       let difference = filteredResults[5].Cases - filteredResults[0].Cases;
-      //if (difference < 0) difference = 0;
       const copy = [];
 
       const newCountry = {
@@ -52,7 +51,7 @@ function App() {
   };
 
   useEffect(() => {
-    if (filteredCountry.length <= 0) fetchCountries();
+    fetchCountries();
   }, [reset]);
 
   return (
@@ -75,6 +74,7 @@ function App() {
         setFilteredCountry={setFilteredCountry}
         fetchCasesByFilter={fetchCasesByFilter}
         setReset={setReset}
+        reset={reset}
       />
       <Card
         cases={data}

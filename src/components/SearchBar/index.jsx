@@ -6,6 +6,7 @@ export const SearchBar = ({
   fetchCasesByFilter,
   setReset,
   setFilteredCountry,
+  reset,
 }) => {
   const [name, setName] = useState("");
 
@@ -16,7 +17,7 @@ export const SearchBar = ({
   return (
     <S.Content>
       <FaSync
-        className="sync"
+        className={reset ? "loading" : "sync"}
         onClick={() => {
           setReset(true);
           setFilteredCountry([]);

@@ -1,12 +1,7 @@
 import axios from "axios";
 import * as S from "./Cards.Style";
 
-export const Card = ({
-  filteredCountry,
-  cases,
-
-  fetchCasesByFilter,
-}) => {
+export const Card = ({ filteredCountry, cases, fetchCasesByFilter }) => {
   return (
     <S.Container>
       {filteredCountry.length > 0
