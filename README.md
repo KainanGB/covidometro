@@ -3,6 +3,10 @@
 Projeto Finalizado 🚀 
 </h4>
 
+<h4 align="center"> 
+Versão web: https://covidometroteste.netlify.app/
+</h4>
+
 ## DESCRIÇÃO
 
 Site criado para ajudar na categorização e fácil acesso a todos os casos de **COVID-19** ao redor do mundo.
