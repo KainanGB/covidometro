@@ -1,19 +1,13 @@
 import axios from "axios";
 import * as S from "./Cards.Style";
 
-export const Card = ({ filteredCountry, cases, searchCountry, setReset }) => {
-  const handleFetchCountriesByName = async (country) => {
-    try {
-      const res = await axios.get("https://api.covid19api.com/summary");
-      const results = await res.data;
-
-      searchCountry(results.Countries);
-      setReset(false);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
+export const Card = ({
+  filteredCountry,
+  cases,
+  searchCountry,
+  setReset,
+  fetchCasesByFilter,
+}) => {
   return (
     <S.Container>
       {filteredCountry.length > 0
@@ -34,7 +28,10 @@ export const Card = ({ filteredCountry, cases, searchCountry, setReset }) => {
           })
         : cases.map((item) => {
             return (
-              <S.Card key={item.ID}>
+              <S.Card
+                key={item.ID}
+                onClick={() => fetchCasesByFilter(item.Country)}
+              >
                 <S.CardTitle>{item.Country}</S.CardTitle>
                 <S.CardBody>
                   <S.Column>

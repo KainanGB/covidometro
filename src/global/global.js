@@ -10,7 +10,7 @@ export default createGlobalStyle`
     color: ${pallete.primaryTextColor};
 
     body {
-      background-color: #FFFFFF;
+      background-color: #fefaf9;
     }
 
     img {

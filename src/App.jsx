@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { Card } from "./components/Card";
-
-import moment from "moment";
 import axios from "axios";
 
 import HeroImg from "./assets/doctors.svg";
@@ -37,7 +35,8 @@ function App() {
       );
       const results = await res.data;
       const filteredResults = results.splice(results.length - 6, 6);
-      const difference = filteredResults[5].Cases - filteredResults[0].Cases;
+      let difference = filteredResults[5].Cases - filteredResults[0].Cases;
+      if (difference < 0) difference = 0;
       const copy = [];
 
       const newCountry = {
