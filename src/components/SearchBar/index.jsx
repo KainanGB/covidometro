@@ -3,15 +3,17 @@ import * as S from "./SearchBar.Style";
 import { FaSearch, FaSync } from "react-icons/fa";
 
 export const SearchBar = ({
-  fetchCasesByFilter,
+  handleFetchCasesBySearchBar,
   setReset,
   setFilteredCountry,
+  handleFetchDataBySearchBarFilter,
   reset,
 }) => {
   const [name, setName] = useState("");
 
   const handleOnChange = (e) => {
     setName(e.target.value);
+    handleFetchDataBySearchBarFilter(e.target.value);
   };
 
   return (
@@ -34,7 +36,7 @@ export const SearchBar = ({
         {name ? (
           <S.Button
             onClick={() => {
-              fetchCasesByFilter(name);
+              handleFetchCasesBySearchBar(name);
               setName("");
             }}
           />

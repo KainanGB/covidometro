@@ -1,17 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SearchBar } from "./components/SearchBar";
 import { Card } from "./components/Card";
-import axios from "axios";
+import { toast } from "react-toastify";
 
+import axios from "axios";
 import HeroImg from "./assets/doctors.svg";
 import * as S from "./global/global";
-import { useEffect } from "react";
 
 function App() {
   const [data, setData] = useState([]);
   const [worldDataCases, setWorldDataCases] = useState([]);
   const [reset, setReset] = useState(false);
   const [filteredCountry, setFilteredCountry] = useState([]);
+  const [searchBar, setSearchBar] = useState([]);
 
   const fetchCountries = async () => {
     try {
@@ -21,11 +22,11 @@ function App() {
       setData(results.Countries);
       setReset(false);
     } catch (err) {
-      console.log(err);
+      toast.error("Houve um erro com os dados, por favor atualize a página.");
     }
   };
 
-  const fetchCasesByFilter = async (value) => {
+  const handleFetchCasesBySearchBar = async (value) => {
     try {
       const countryName = data.find((data) => {
         return data.Country.toLowerCase() === value.toLowerCase();
@@ -47,11 +48,22 @@ function App() {
       setReset(false);
     } catch (err) {
       console.log(err);
+      if ((err = "Cannot read properties of undefined (reading 'Slug')")) {
+        toast.error("Tente novamente mas com o nome do país em inglês.");
+      } else
+        toast.error(
+          "Houve um erro com a nossa busca, tente novamente ou espere alguns minutos."
+        );
     }
+  };
+
+  const handleFetchDataBySearchBarFilter = (value) => {
+    setSearchBar(value);
   };
 
   useEffect(() => {
     fetchCountries();
+    if (reset) setSearchBar("");
   }, [reset]);
 
   return (
@@ -72,14 +84,16 @@ function App() {
       </S.Hero>
       <SearchBar
         setFilteredCountry={setFilteredCountry}
-        fetchCasesByFilter={fetchCasesByFilter}
+        handleFetchCasesBySearchBar={handleFetchCasesBySearchBar}
         setReset={setReset}
         reset={reset}
+        handleFetchDataBySearchBarFilter={handleFetchDataBySearchBarFilter}
       />
       <Card
         cases={data}
         filteredCountry={filteredCountry}
-        fetchCasesByFilter={fetchCasesByFilter}
+        handleFetchCasesBySearchBar={handleFetchCasesBySearchBar}
+        searchBar={searchBar}
       />
     </S.Container>
   );
