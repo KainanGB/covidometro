@@ -9,7 +9,6 @@ import * as S from "./global/global";
 
 function App() {
   const [data, setData] = useState([]);
-  const [worldDataCases, setWorldDataCases] = useState([]);
   const [reset, setReset] = useState(false);
   const [filteredCountry, setFilteredCountry] = useState([]);
   const [searchBar, setSearchBar] = useState([]);
@@ -18,7 +17,6 @@ function App() {
     try {
       const res = await axios.get("https://api.covid19api.com/summary");
       const results = await res.data;
-      setWorldDataCases(results.Global);
       setData(results.Countries);
       setReset(false);
     } catch (err) {
